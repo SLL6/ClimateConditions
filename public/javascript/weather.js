@@ -1,10 +1,25 @@
-var data = 
+var KEY = "35ec5bf920b736305714f59eed2a6f0a";
+
 console.log(httpGet());
 
 function httpGet()
 {
-    var xmlHttp = new XMLHttpRequest();
-    xmlHttp.open( "GET", "https://samples.openweathermap.org/data/2.5/weather?zip=94040,us&appid=b1b15e88fa797225412429c1c50c122a1", false ); // false for synchronous request
-    xmlHttp.send( null );
-    return xmlHttp.responseText;
+    var xhr = new XMLHttpRequest();
+xhr.open("GET", "http://api.openweathermap.org/data/2.5/weather?q=London&mode=json", true);
+xhr.onload = function (e) {
+  if (xhr.readyState === 4) {
+    if (xhr.status === 200) {
+      console.log(xhr.responseText);
+      var response = JSON.parse(xhr.responseText);
+      console.log("Temperature(K): " + response.main.temp);
+    } else {
+      console.error(xhr.statusText);
+    }
+  }
+};
+xhr.onerror = function (e) {
+  console.error(xhr.statusText);
+};
+xhr.send(null);
+return xhr.responseText;
 }
