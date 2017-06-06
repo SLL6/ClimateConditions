@@ -1,5 +1,3 @@
-var cool = require('cool-ascii-faces');
-var pg = require('pg');
 var express = require('express');
 var app = express();
 
@@ -15,9 +13,7 @@ app.get('/', function(request, response) {
   response.render('pages/index');
 });
 
-app.get('/cool',function(request,response){
-  response.send(cool());
-});
+
 
 app.get('/times', function(request,response){
 	var result = ''
