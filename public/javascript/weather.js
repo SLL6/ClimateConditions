@@ -6,6 +6,7 @@ function httpGet()
 {
     var xhr = new XMLHttpRequest();
 xhr.open("GET", "http://samples.openweathermap.org/data/2.5/forecast?id=524901&appid=" + KEY, true);
+xhr.setRequestHeader("Access-Control-Allow-Origin", "http://weatherfeather.herokuapp.com/");
 xhr.onload = function (e) {
   if (xhr.readyState === 4) {
     if (xhr.status === 200) {
