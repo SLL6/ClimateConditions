@@ -5,8 +5,8 @@ console.log(httpGet());
 function httpGet()
 {
     var xhr = new XMLHttpRequest();
-xhr.open("GET", "http://samples.openweathermap.org/data/2.5/forecast?id=524901&appid=" + KEY, true);
-xhr.setRequestHeader("Access-Control-Allow-Origin", "http://weatherfeather.herokuapp.com/");
+xhr.open("GET", "http://api.wunderground.com/api/e4f143fbdf05222d/conditions/q/CA/San_Francisco.json", true);
+//xhr.setRequestHeader("Access-Control-Allow-Origin", "localhost:5000");
 xhr.onload = function (e) {
   if (xhr.readyState === 4) {
     if (xhr.status === 200) {
