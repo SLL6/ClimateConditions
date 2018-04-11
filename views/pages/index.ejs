@@ -14,12 +14,31 @@
     <!-- Latest compiled and minified JavaScript -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 
-    <!-- Jumbotron Narrow Theme from Bootstrap-->
+    <!-- Jumbotron Narrow Theme from Bootstrap--> 
     <link href="stylesheets/jumbotron-narrow.css" rel="stylesheet">
 
     <script src="javascript/weather.js"></script>
     
 
+    <script>
+    var location_data = null;
+      jQuery(document).ready(function($) {
+      $.ajax({
+        url : "http://api.wunderground.com/api/e4f143fbdf05222d/geolookup/conditions/q/CA/La_Jolla.json",
+        dataType : "jsonp",
+        success : function(parsed_json) {
+          console.log(parsed_json)
+          location_data = parsed_json;
+          var location = parsed_json['location']['city'];
+          var temp_f = parsed_json['current_observation']['feelslike_f'];
+          alert("Current temperature in " + location + " is: " + temp_f);
+          document.getElementById("temp").innerHTML= temp_f + "&#8457";
+          document.getElementById("info").innerHTML= parsed_json['current_observation']['wind_gust_mph'];
+
+        }
+      });
+});
+</script>
 </head>
 <body>
   <div class="container">
@@ -35,8 +54,8 @@
       </div>
 
       <div class="jumbotron">
-        <h1>Jumbotron heading</h1>
-        <p class="lead">Cras justo odio, dapibus ac facilisis in, egestas eget quam. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
+        <h1 id="temp">Jumbotron heading</h1>
+        <p id="info" class="lead">Cras justo odio, dapibus ac facilisis in, egestas eget quam. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
         <p><a class="btn btn-lg btn-success" href="#" role="button">Sign up today</a></p>
       </div>
 
