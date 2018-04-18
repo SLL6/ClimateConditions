@@ -31,9 +31,11 @@
           location_data = parsed_json;
           var location = parsed_json['location']['city'];
           var temp_f = parsed_json['current_observation']['feelslike_f'];
-          alert("Current temperature in " + location + " is: " + temp_f);
+          //alert("Current temperature in " + location + " is: " + temp_f);
           document.getElementById("temp").innerHTML= temp_f + "&#8457";
           document.getElementById("info").innerHTML= parsed_json['current_observation']['wind_gust_mph'];
+          $(document.getElementById("info")).after("You should wear a Sweater");
+          $(document.getElementById("info")).after("<\p>"+ parsed_json['current_observation']['relative_humidity']+ "<\p>");
 
         }
       });
